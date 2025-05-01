@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>صفحه اصلی</h2>
+    {% if user.is_authenticated %}
+        <p>اینجا داشبورد شما خواهد بود!</p>
+    {% else %}
+        <p>لطفاً وارد شوید یا ثبت‌نام کنید.</p>
+    {% endif %}
+{% endblock %}
