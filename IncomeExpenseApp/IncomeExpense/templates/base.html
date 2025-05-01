@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>مدیریت دخل و خرج</title>
+    <style>
+        body { font-family: Arial, sans-serif; direction: rtl; }
+        .message { color: green; }
+    </style>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <p>خوش آمدید {{ user.username }} | <a href="{% url 'logout' %}">خروج</a></p>
+    {% else %}
+        <p><a href="{% url 'login' %}">ورود</a> | <a href="{% url 'register' %}">ثبت‌نام</a></p>
+    {% endif %}
+    {% if messages %}
+        {% for message in messages %}
+            <p class="message">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    {% block content %}{% endblock %}
+</body>
+</html>

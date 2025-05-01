@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>صفحه اصلی</h2>
+    {% if user.is_authenticated %}
+        <h3>داشبورد مدیریت دخل و خرج</h3>
+        <p>موجودی: {{ balance }} تومان</p>
+        <p>کل درآمد: {{ total_income }} تومان</p>
+        <p>کل هزینه: {{ total_expense }} تومان</p>
+
+        <h4>درآمدها</h4>
+        <ul>
+            {% for income in incomes %}
+                <li>{{ income.description }} - {{ income.amount }} تومان - {{ income.date }}</li>
+            {% empty %}
+                <li>درآمدی ثبت نشده است.</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'add_income' %}">اضافه کردن درآمد</a>
+
+        <h4>هزینه‌ها</h4>
+        <ul>
+            {% for expense in expenses %}
+                <li>{{ expense.description }} - {{ expense.amount }} تومان - {{ expense.date }}</li>
+            {% empty %}
+                <li>هزینه‌ای ثبت نشده است.</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'add_expense' %}">اضافه کردن هزینه</a>
+    {% else %}
+        <p>لطفاً وارد شوید یا ثبت‌نام کنید.</p>
+    {% endif %}
+{% endblock %}
